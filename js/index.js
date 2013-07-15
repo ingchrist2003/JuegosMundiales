@@ -32,13 +32,17 @@ function loadLists(idlist,title)
 //
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
-	
-	var db;
+	alert("Dispositivo listo");
+		
+}
+
+$(function () {
+    var db;
 	db = window.openDatabase("juegosMundiales","1.0","Juegos Mundiales 2013",200000);
 	//db.transaction(leerBD,errorDB);
 	db.transaction(crearRegistros,errorDB,cargaXMLNoticias);
-	leerBaseDatos();	
-}
+	leerBaseDatos();
+ });
 
     
 $('#myMenu').css('width', '80%');           
