@@ -25,11 +25,12 @@ function crearRegistros(tx)
 	//tx.executeSql('DROP TABLE IF EXISTS CRONOGRAMA');
 	//tx.executeSql('DROP TABLE IF EXISTS POSICIONES');
 	//tx.executeSql('DROP TABLE IF EXISTS GALERIAS');
-	
+	alert("entro crea registros");
 	tx.executeSql('CREATE TABLE IF NOT EXISTS NOTICIAS (id INTEGER PRIMARY KEY AUTOINCREMENT,nid INTEGER NULL, titulo TEXT  NULL, descripcion TEXT  NULL,urlimagen TEXT  NULL,fecha_creacion DATETIME NULL,fecha_actualizacion DATETIME NULL)')	;
 	tx.executeSql('CREATE TABLE IF NOT EXISTS CRONOGRAMA (id INTEGER PRIMARY KEY AUTOINCREMENT,nombrecate TEXT  NULL, descripcion TEXT  NULL,urlimagen TEXT  NULL,urlicono TEXT  NULL)')	;
 	tx.executeSql('CREATE TABLE IF NOT EXISTS POSICIONES (id INTEGER PRIMARY KEY AUTOINCREMENT,pais TEXT  NULL, descripcion TEXT  NULL,oro INTEGER  NULL,plata INTEGER  NULL,bronce INTEGER NULL)')	;
 	tx.executeSql('CREATE TABLE IF NOT EXISTS GALERIAS (id INTEGER PRIMARY KEY AUTOINCREMENT,titulo TEXT  NULL, descripcion TEXT  NULL,imagenes TEXT  NULL)')	;
+	alert("salio crea registros");
 	
 }
 /*Noticias*/
@@ -108,6 +109,7 @@ function resultLastUpdate(tx,resultados)
 	fechaupd = resultados.rows.item(0).fecha_actualizacion;
 }
 function cargaXMLNoticias() {
+	alert("entro xml")
 	notiarray = [];
 	nidsarray = [];
 	$.ajax({
@@ -131,6 +133,7 @@ function cargaXMLNoticias() {
                 noticias[3] = imagen;
 				noticias[4] = fechacre;
 				noticias[5] = fechaupd;
+				alert("nid"+nid);
                 
 				notiarray.push(noticias);
 				nidsarray.push(nid);
