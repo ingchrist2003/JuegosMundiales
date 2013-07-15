@@ -21,10 +21,10 @@ function abrirBaseDatos()
 
 function crearRegistros(tx)
 {
-	tx.executeSql('DROP TABLE IF EXISTS NOTICIAS');
-	tx.executeSql('DROP TABLE IF EXISTS CRONOGRAMA');
-	tx.executeSql('DROP TABLE IF EXISTS POSICIONES');
-	tx.executeSql('DROP TABLE IF EXISTS GALERIAS');
+	//tx.executeSql('DROP TABLE IF EXISTS NOTICIAS');
+	//tx.executeSql('DROP TABLE IF EXISTS CRONOGRAMA');
+	//tx.executeSql('DROP TABLE IF EXISTS POSICIONES');
+	//tx.executeSql('DROP TABLE IF EXISTS GALERIAS');
 	
 	tx.executeSql('CREATE TABLE IF NOT EXISTS NOTICIAS (id INTEGER PRIMARY KEY AUTOINCREMENT,nid INTEGER NULL, titulo TEXT  NULL, descripcion TEXT  NULL,urlimagen TEXT  NULL,fecha_creacion DATETIME NULL,fecha_actualizacion DATETIME NULL)')	;
 	tx.executeSql('CREATE TABLE IF NOT EXISTS CRONOGRAMA (id INTEGER PRIMARY KEY AUTOINCREMENT,nombrecate TEXT  NULL, descripcion TEXT  NULL,urlimagen TEXT  NULL,urlicono TEXT  NULL)')	;
@@ -94,6 +94,7 @@ function agregarNoticiaSQL(tx)
 
 function actualizarNoticias()
 {
+	alert("actualizarNoticias");
 	var db;
 	db = window.openDatabase("juegosMundiales","1.0","Juegos Mundiales 2013",200000);
 	db.transaction(actualizarNotiBD,errorDB,cargaXMLNoticias);
@@ -141,6 +142,7 @@ function cargaXMLNoticias() {
 
 function creacionNoticias()
 {
+	
 	listado = nidsarray.join(",");
 	db = window.openDatabase("juegosMundiales","1.0","Juegos Mundiales 2013",200000);
 	db.transaction(borrarRepetidas,errorDB,agregarNoticias);	
