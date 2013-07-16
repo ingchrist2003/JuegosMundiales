@@ -44,6 +44,19 @@ $(function () {
 	leerBaseDatos();
  });
 
+$("div:jqmData(role='collapsible')").each(function(){
+ bindEventTouch($(this));
+ });
+				
+function bindEventTouch(element) {
+	element.bind('tap', function(event, ui) {
+		if(element.hasClass('ui-collapsible-collapsed')) {
+		 alert(element.attr('id')+' is closed');
+		 } else {
+		alert(element.attr('id')+' is open');
+		}
+	});
+}
     
 $('#myMenu').css('width', '80%');           
 
