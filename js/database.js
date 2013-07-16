@@ -48,8 +48,19 @@ function mostrarResultados(tx,resultados)
 {
 	var lista = "";
 	var contenedor = document.getElementById('scroller');
-	ancho = contenedor.offsetWidth;
-	alert(ancho);
+	var ancho = contenedor.offsetWidth;
+	var numcars = 0;
+	//rangos de texto a mostrar en el resumen
+	if(ancho <= 400)
+	{
+		numcars = 150;
+	}else if(ancho >400 && ancho < 600)
+	{
+		numcars = 300;
+	}else{
+		numcars = 450;
+	}
+	//
 	
 	for(i=0;i<resultados.rows.length;i++)
 	{
@@ -60,7 +71,7 @@ function mostrarResultados(tx,resultados)
 		lista += "";
 		lista += "<b>"+resultados.rows.item(i).titulo+"</b><br />";
 		lista += "<label style='font-size:10px'><b>"+resultados.rows.item(i).fecha_creacion+"</b></label><br />";
-		lista += ""+abstract.substring(0,80)+"<br />";
+		lista += ""+abstract.substring(0,numcars)+"<br />";
 		lista += "";
 		lista += "</div>";
 		lista += "</li>";
