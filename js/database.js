@@ -52,7 +52,7 @@ function mostrarResultados(tx,resultados)
 		var abstract = resultados.rows.item(i).descripcion;
 		lista += "<li>";
 		lista += "<div style='width:100%'>";
-		lista += "<img src='"+resultados.rows.item(i).urlimagen+"' style='max-width:40%;float:left;margin-right:10px;margin-bottom:10px;'>";	
+		lista += "<img src='"+resultados.rows.item(i).urlimagen+"' style='width:40%; max-width:40%;float:left;margin-right:10px;margin-bottom:10px;'>";	
 		lista += "";
 		lista += "<b>"+resultados.rows.item(i).titulo+"</b><br />";
 		lista += "<label style='font-size:10px'><b>"+resultados.rows.item(i).fecha_creacion+"</b></label><br />";
