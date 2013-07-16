@@ -47,6 +47,10 @@ function leerBD(tx)
 function mostrarResultados(tx,resultados)
 {
 	var lista = "";
+	var contenedor = document.getElementById('scroller');
+	ancho = contenedor.offsetWidth;
+	alert(ancho);
+	
 	for(i=0;i<resultados.rows.length;i++)
 	{
 		var abstract = resultados.rows.item(i).descripcion;
