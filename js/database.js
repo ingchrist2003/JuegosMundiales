@@ -74,7 +74,7 @@ function mostrarResultados(tx,resultados)
 		lista += "<b>"+resultados.rows.item(i).titulo+"</b><br />";
 		lista += "<label style='font-size:10px'><b>"+resultados.rows.item(i).fecha_creacion+"</b></label><br />";
 		lista += ""+abstract.substring(0,numcars)+"...<br />";
-		lista += '<a href="#" style="float:right; margin-top:5px;margin-right:5px;">';
+		lista += '<a href="#news" data-role="button" data-icon="arrow-d" data-iconpos="notext" data-transition="none" data-inline="true" style="float:right; margin-top:5px;margin-right:5px;">';
 		lista += '<img src="img/vermas.png" width="80" />';
 		lista += '</a>';
 		lista += "</div>";
