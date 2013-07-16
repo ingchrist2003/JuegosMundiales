@@ -64,6 +64,7 @@ function mostrarResultados(tx,resultados)
 	
 	for(i=0;i<resultados.rows.length;i++)
 	{
+		//var abstract = resultados.rows.item(i).descripcion;
 		var cadtexto = resultados.rows.item(i).descripcion;
 		var abstract = $('#tempo').html(cadtexto).text();
 		lista += "<li>";
@@ -72,8 +73,10 @@ function mostrarResultados(tx,resultados)
 		lista += "";
 		lista += "<b>"+resultados.rows.item(i).titulo+"</b><br />";
 		lista += "<label style='font-size:10px'><b>"+resultados.rows.item(i).fecha_creacion+"</b></label><br />";
-		lista += ""+abstract.substring(0,numcars)+"<br />";
-		lista += "";
+		lista += ""+abstract.substring(0,numcars)+"...<br />";
+		lista += '<a href="#" style="float:right; margin-top:5px;margin-right:5px;">';
+		lista += '<img src="img/vermas.png" width="80" />';
+		lista += '</a>';
 		lista += "</div>";
 		lista += "</li>";
 	}
