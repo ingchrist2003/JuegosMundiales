@@ -64,7 +64,8 @@ function mostrarResultados(tx,resultados)
 	
 	for(i=0;i<resultados.rows.length;i++)
 	{
-		var abstract = resultados.rows.item(i).descripcion;
+		var cadtexto = resultados.rows.item(i).descripcion;
+		var abstract = $('#tempo').html(cadtexto).text();
 		lista += "<li>";
 		lista += "<div style='width:100%'>";
 		lista += "<img src='"+resultados.rows.item(i).urlimagen+"' style='width:40%; max-width:40%;float:left;margin-right:10px;margin-bottom:10px;'>";	
