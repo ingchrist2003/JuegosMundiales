@@ -42,7 +42,7 @@
 }
 
 #scroller li {
-	padding:0 10px;
+	padding : 10px;
 	height:auto;
 	overflow:hidden;
 	line-height:18px;

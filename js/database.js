@@ -21,16 +21,15 @@ function abrirBaseDatos()
 
 function crearRegistros(tx)
 {
-	//tx.executeSql('DROP TABLE IF EXISTS NOTICIAS');
-	//tx.executeSql('DROP TABLE IF EXISTS CRONOGRAMA');
-	//tx.executeSql('DROP TABLE IF EXISTS POSICIONES');
-	//tx.executeSql('DROP TABLE IF EXISTS GALERIAS');
+	tx.executeSql('DROP TABLE IF EXISTS NOTICIAS');
+	tx.executeSql('DROP TABLE IF EXISTS CRONOGRAMA');
+	tx.executeSql('DROP TABLE IF EXISTS POSICIONES');
+	tx.executeSql('DROP TABLE IF EXISTS GALERIAS');
 	
 	tx.executeSql('CREATE TABLE IF NOT EXISTS NOTICIAS (id INTEGER PRIMARY KEY AUTOINCREMENT,nid INTEGER NULL, titulo TEXT  NULL, descripcion TEXT  NULL,urlimagen TEXT  NULL,fecha_creacion DATETIME NULL,fecha_actualizacion DATETIME NULL)')	;
 	tx.executeSql('CREATE TABLE IF NOT EXISTS CRONOGRAMA (id INTEGER PRIMARY KEY AUTOINCREMENT,nombrecate TEXT  NULL, descripcion TEXT  NULL,urlimagen TEXT  NULL,urlicono TEXT  NULL)')	;
 	tx.executeSql('CREATE TABLE IF NOT EXISTS POSICIONES (id INTEGER PRIMARY KEY AUTOINCREMENT,pais TEXT  NULL, descripcion TEXT  NULL,oro INTEGER  NULL,plata INTEGER  NULL,bronce INTEGER NULL)')	;
 	tx.executeSql('CREATE TABLE IF NOT EXISTS GALERIAS (id INTEGER PRIMARY KEY AUTOINCREMENT,titulo TEXT  NULL, descripcion TEXT  NULL,imagenes TEXT  NULL)')	;
-	
 	
 }
 /*Noticias*/
@@ -50,13 +49,16 @@ function mostrarResultados(tx,resultados)
 	var lista = "";
 	for(i=0;i<resultados.rows.length;i++)
 	{
+		var abstract = resultados.rows.item(i).descripcion;
 		lista += "<li>";
-		lista += "<img src='"+resultados.rows.item(i).urlimagen+"' width = '80'><br>";	
-		lista += "<b>id</b>"+resultados.rows.item(i).id+"<br>";	
-		lista += "<b>Título</b>"+resultados.rows.item(i).titulo+"<br>";	
-		lista += "<b>Descripción</b>"+resultados.rows.item(i).descripcion+"<br>";	
-		lista += "<b>Fecha created</b>"+resultados.rows.item(i).fecha_creacion+"<br>";	
-		lista += "<b>Fecha updated</b>"+resultados.rows.item(i).fecha_actualizacion+"<br>";	
+		lista += "<div style='width:100%'>";
+		lista += "<img src='"+resultados.rows.item(i).urlimagen+"' style='max-width:40%;float:left;margin-right:10px;margin-bottom:10px;'>";	
+		lista += "";
+		lista += "<b>"+resultados.rows.item(i).titulo+"</b><br />";
+		lista += "<label style='font-size:10px'><b>"+resultados.rows.item(i).fecha_creacion+"</b></label><br />";
+		lista += ""+abstract.substring(0,80)+"<br />";
+		lista += "";
+		lista += "</div>";
 		lista += "</li>";
 	}
 	document.getElementById("thelist").innerHTML=lista;
@@ -131,7 +133,6 @@ function cargaXMLNoticias() {
                 noticias[3] = imagen;
 				noticias[4] = fechacre;
 				noticias[5] = fechaupd;
-				
                 
 				notiarray.push(noticias);
 				nidsarray.push(nid);
@@ -143,7 +144,6 @@ function cargaXMLNoticias() {
 
 function creacionNoticias()
 {
-	
 	listado = nidsarray.join(",");
 	db = window.openDatabase("juegosMundiales","1.0","Juegos Mundiales 2013",200000);
 	db.transaction(borrarRepetidas,errorDB,agregarNoticias);	
