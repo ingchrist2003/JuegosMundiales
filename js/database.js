@@ -1,4 +1,5 @@
 // JavaScript Document
+// seccion noticias
 
 //variables noticia
 var titulo_noti;
@@ -22,14 +23,16 @@ function abrirBaseDatos()
 function crearRegistros(tx)
 {
 	tx.executeSql('DROP TABLE IF EXISTS NOTICIAS');
+	tx.executeSql('DROP TABLE IF EXISTS INFORMACION');
 	tx.executeSql('DROP TABLE IF EXISTS CRONOGRAMA');
 	tx.executeSql('DROP TABLE IF EXISTS POSICIONES');
 	tx.executeSql('DROP TABLE IF EXISTS GALERIAS');
 	
 	tx.executeSql('CREATE TABLE IF NOT EXISTS NOTICIAS (id INTEGER PRIMARY KEY AUTOINCREMENT,nid INTEGER NULL, titulo TEXT  NULL, descripcion TEXT  NULL,urlimagen TEXT  NULL,fecha_creacion DATETIME NULL,fecha_actualizacion DATETIME NULL)')	;
-	tx.executeSql('CREATE TABLE IF NOT EXISTS CRONOGRAMA (id INTEGER PRIMARY KEY AUTOINCREMENT,nombrecate TEXT  NULL, descripcion TEXT  NULL,urlimagen TEXT  NULL,urlicono TEXT  NULL)')	;
-	tx.executeSql('CREATE TABLE IF NOT EXISTS POSICIONES (id INTEGER PRIMARY KEY AUTOINCREMENT,pais TEXT  NULL, descripcion TEXT  NULL,oro INTEGER  NULL,plata INTEGER  NULL,bronce INTEGER NULL)')	;
-	tx.executeSql('CREATE TABLE IF NOT EXISTS GALERIAS (id INTEGER PRIMARY KEY AUTOINCREMENT,titulo TEXT  NULL, descripcion TEXT  NULL,imagenes TEXT  NULL)')	;
+	tx.executeSql('CREATE TABLE IF NOT EXISTS INFORMACION (id INTEGER PRIMARY KEY AUTOINCREMENT,nid INTEGER NULL, titulo TEXT  NULL, descripcion TEXT  NULL,urlimagen TEXT  NULL,fecha_creacion DATETIME NULL,fecha_actualizacion DATETIME NULL)')	;
+	tx.executeSql('CREATE TABLE IF NOT EXISTS CRONOGRAMA (id INTEGER PRIMARY KEY AUTOINCREMENT,nid INTEGER NULL,titulo TEXT  NULL, descripcion TEXT  NULL,urlimagen TEXT  NULL,urlicono TEXT  NULL,fecha_creacion DATETIME NULL,fecha_actualizacion DATETIME NULL)')	;
+	tx.executeSql('CREATE TABLE IF NOT EXISTS POSICIONES (id INTEGER PRIMARY KEY AUTOINCREMENT,nid INTEGER NULL,titulo TEXT  NULL, descripcion TEXT  NULL,oro INTEGER  NULL,plata INTEGER  NULL,bronce INTEGER NULL,fecha_creacion DATETIME NULL,fecha_actualizacion DATETIME NULL)')	;
+	tx.executeSql('CREATE TABLE IF NOT EXISTS GALERIAS (id INTEGER PRIMARY KEY AUTOINCREMENT,nid INTEGER NULL,titulo TEXT  NULL, descripcion TEXT  NULL,imagenes TEXT  NULL,fecha_creacion DATETIME NULL,fecha_actualizacion DATETIME NULL)')	;
 	
 }
 /*Noticias*/

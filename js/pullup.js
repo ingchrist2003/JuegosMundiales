@@ -1,7 +1,7 @@
 // JavaScript Document
 
 
-var myScroll,myScroll2,
+var myScroll,myScroll2,myScroll3,myScroll4,myScroll5,myScroll6,
 	pullDownEl, pullDownOffset,
 	pullUpEl, pullUpOffset,
 	generatedCount = 0;
@@ -49,7 +49,18 @@ function loaded() {
 				pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Loading...';				
 				//pullDownAction();	// Execute custom function (ajax call?)
 				//cargaXMLNoticias();
-				actualizarNoticias();//obtiene la ultima fecha de actualizacion
+				if(idseccion==1)
+					actualizarNoticias();//obtiene la ultima fecha de actualizacion
+				else if(idseccion==2)
+					actualizarInformacion();//obtiene la ultima fecha de actualizacion
+				else if(idseccion==3)
+					actualizarCronograma();//obtiene la ultima fecha de actualizacion
+				else if(idseccion==4)
+					actualizarPosiciones();//obtiene la ultima fecha de actualizacion
+				else if(idseccion==5)
+					actualizarGaleria();//obtiene la ultima fecha de actualizacion
+				else
+					actualizarNoticias();//obtiene la ultima fecha de actualizacion
 			}
 		}
 	});
@@ -57,7 +68,11 @@ function loaded() {
 	setTimeout(function () { document.getElementById('wrapper').style.left = '0'; }, 800);
 	
 	//activar los demas scrollers
-	myScroll2 = new iScroll('wrapper2',{ hScrollbar: false,hScroll: false });
+	myScroll2 = new iScroll('wrapper2',{ hScrollbar: false,hScroll: false });//detalle noticia
+	myScroll3 = new iScroll('wrapper3',{ hScrollbar: false,hScroll: false });//detalle informacion
+	myScroll4 = new iScroll('wrapper4',{ hScrollbar: false,hScroll: false });//detalle cronograma
+	myScroll5 = new iScroll('wrapper5',{ hScrollbar: false,hScroll: false });//detalle posiciones
+	myScroll6 = new iScroll('wrapper6',{ hScrollbar: false,hScroll: false });//detalle galeria
 }
 
 

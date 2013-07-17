@@ -16,15 +16,28 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
+var idseccion = 1;
 
 function loadLists(idlist,title)
 {
 	document.getElementById("thelist").innerHTML=document.getElementById("lista"+idlist).innerHTML;
 	document.getElementById("currenttitle").innerHTML="<b>"+title+"</b>";
-	
+	idseccion = idlist;
 	//cierra el panel
 	$( "#myPanel" ).panel( "close" );
+	if(idseccion==1)
+		actualizarNoticias();//obtiene la ultima fecha de actualizacion
+	else if(idseccion==2)
+		actualizarInformacion();//obtiene la ultima fecha de actualizacion
+	else if(idseccion==3)
+		actualizarCronograma();//obtiene la ultima fecha de actualizacion
+	else if(idseccion==4)
+		actualizarPosiciones();//obtiene la ultima fecha de actualizacion
+	else if(idseccion==5)
+		actualizarGaleria();//obtiene la ultima fecha de actualizacion
+	else
+		actualizarNoticias();//obtiene la ultima fecha de actualizacion
+	
 }
 			 	
 
