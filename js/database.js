@@ -44,6 +44,8 @@ function leerBD(tx)
 {
 	tx.executeSql('SELECT * FROM NOTICIAS ORDER BY fecha_creacion DESC',[],mostrarResultados,errorDB)
 }	
+
+
 function mostrarResultados(tx,resultados)
 {
 	var lista = "";
@@ -61,28 +63,35 @@ function mostrarResultados(tx,resultados)
 		numcars = 450;
 	}
 	//
-	
-	for(i=0;i<resultados.rows.length;i++)
+	if(resultados.rows.length==0)
 	{
-		//var abstract = resultados.rows.item(i).descripcion;
-		var cadtexto = resultados.rows.item(i).descripcion;
-		var abstract = $('#tempo').html(cadtexto).text();
 		lista += "<li>";
-		lista += "<div style='width:100%'>";
-		lista += "<img src='"+resultados.rows.item(i).urlimagen+"' style='width:40%; max-width:40%;float:left;margin-right:10px;margin-bottom:10px;'>";	
-		lista += "";
-		lista += "<b>"+resultados.rows.item(i).titulo+"</b><br />";
-		lista += "<label style='font-size:10px'><b>"+resultados.rows.item(i).fecha_creacion+"</b></label><br />";
-		lista += ""+abstract.substring(0,numcars)+"...<br />";
-		lista += '<a href="#news" data-role="button" data-icon="arrow-d" data-iconpos="notext" data-transition="none" data-inline="true" style="float:right; margin-top:5px;margin-right:5px;">';
-		lista += '<img src="img/vermas.png" width="80" />';
-		lista += '</a>';
-		lista += "</div>";
+		lista += "No se encontraron contenidos";
 		lista += "</li>";
+	}else{
+		for(i=0;i<resultados.rows.length;i++)
+		{
+			//var abstract = resultados.rows.item(i).descripcion;
+			var cadtexto = resultados.rows.item(i).descripcion;
+			var abstract = $('#tempo').html(cadtexto).text();
+			lista += "<li>";
+			lista += "<div style='width:100%'>";
+			lista += "<img src='"+resultados.rows.item(i).urlimagen+"' style='width:40%; max-width:40%;float:left;margin-right:10px;margin-bottom:10px;'>";	
+			lista += "";
+			lista += "<b>"+resultados.rows.item(i).titulo+"</b><br />";
+			lista += "<label style='font-size:10px'><b>"+resultados.rows.item(i).fecha_creacion+"</b></label><br />";
+			lista += ""+abstract.substring(0,numcars)+"...<br />";
+			lista += '<a href="#news" data-role="button" data-icon="arrow-d" data-iconpos="notext" data-transition="none" data-inline="true" style="float:right; margin-top:5px;margin-right:5px;" onclick="cargarNoticia('+resultados.rows.item(i).nid+')">';
+			lista += '<img src="img/vermas.png" width="80" />';
+			lista += '</a>';
+			lista += "</div>";
+			lista += "</li>";
+		}
 	}
 	document.getElementById("thelist").innerHTML=lista;
 	document.getElementById("lista1").innerHTML=lista;
 	pullDownAction();
+	myScroll.refresh();
 }
 
 
@@ -126,6 +135,7 @@ function actualizarNotiBD(tx)
 }	
 function resultLastUpdate(tx,resultados)
 {
+	if(resultados.rows.length>0)
 	fechaupd = resultados.rows.item(0).fecha_actualizacion;
 }
 function cargaXMLNoticias() {
@@ -157,7 +167,10 @@ function cargaXMLNoticias() {
 				nidsarray.push(nid);
 			});
 			creacionNoticias();
-        }
+        },
+		error: function(xhr, error){
+			leerBaseDatos();
+		}
 	});
 }
 
@@ -170,6 +183,39 @@ function creacionNoticias()
 
 /*Noticias*/
 
+var idnotiactual;
+
+function cargarNoticia(idnoticia)
+{
+	$("#contenoticia").html("");
+	var db;
+	idnotiactual = idnoticia;
+	db = window.openDatabase("juegosMundiales","1.0","Juegos Mundiales 2013",200000);
+	db.transaction(cargarNoticiaBD,errorDB);
+}
+function cargarNoticiaBD(tx)
+{
+	tx.executeSql('SELECT * FROM NOTICIAS WHERE nid='+idnotiactual,[],resultadoCargaNoticia,errorDB);
+}
+function resultadoCargaNoticia(tx,resultados)
+{
+	
+	var cadenaNoticia = "";
+	
+	cadenaNoticia += "";
+	cadenaNoticia += '<h4>'+resultados.rows.item(0).titulo+'</h4>';
+	cadenaNoticia += "<label style='font-size:10px'><b>"+resultados.rows.item(0).fecha_creacion+"</b></label><br />";
+	cadenaNoticia += '<center>';
+	cadenaNoticia += "<img src='"+resultados.rows.item(0).urlimagen+"' style='width:80%; max-width:80%;margin:10px;'>";
+	cadenaNoticia += '</center><br>';
+	cadenaNoticia += '<p>'+resultados.rows.item(0).descripcion+'</p>';
+	cadenaNoticia += '';
+	
+	$("#contenoticia").html(cadenaNoticia);
+	$("#wrapper2").height(window_height);
+	myScroll2.refresh();
+	myScroll2.scrollTo(0, 0);
+}
 /*Noticias*/
 // Transaction error callback
 function errorDB(err) {

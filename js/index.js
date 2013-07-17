@@ -30,6 +30,9 @@ function loadLists(idlist,title)
 
 // Wait for PhoneGap to load
 //
+var header_height;
+var window_height;
+
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 	alert("Dispositivo listo");
@@ -48,4 +51,8 @@ $(document).on("swiperight", function(event, ui) {
      $( "#myPanel").panel("open", {display: "overlay", position: "left"} );
 });          
           
+$(function () {
+header_height  = $('[data-role="header"]').height();
+window_height  = ($(this).height())-header_height-30;
+});
 

@@ -1,7 +1,7 @@
 // JavaScript Document
 
 
-var myScroll,
+var myScroll,myScroll2,
 	pullDownEl, pullDownOffset,
 	pullUpEl, pullUpOffset,
 	generatedCount = 0;
@@ -55,6 +55,9 @@ function loaded() {
 	});
 	
 	setTimeout(function () { document.getElementById('wrapper').style.left = '0'; }, 800);
+	
+	//activar los demas scrollers
+	myScroll2 = new iScroll('wrapper2',{ hScrollbar: false,hScroll: false });
 }
 
 
