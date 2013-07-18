@@ -50,7 +50,7 @@ function mostrarResultadosPosi(tx,resultados)
 		lista += "</li>";
 	}else{
 		lista += "<li>";
-		lista += '<table data-role="table" id="movie-table" data-mode="reflow" class="ui-responsive table-stroke">';
+		lista += '<table data-role="table" id="movie-table" data-mode="reflow" class="ui-responsive table-stroke" width="100%">';
 		lista += '<thead>';
 		lista += '<tr>';
 		lista += '<th data-priority="1">Posición</th>';

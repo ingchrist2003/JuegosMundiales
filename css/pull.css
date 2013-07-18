@@ -133,3 +133,30 @@
     top: 50%;
     margin-top: -25px;
 }
+
+.gallery{
+	list-style:none;
+	
+}
+.gallery li{
+	float:left;
+	width:200px;
+	height:200px;
+	margin:5px;
+	overflow:hidden;
+	background-color:#000;
+	
+}
+.gallery2{
+	list-style:none;
+	margin-left:0px;
+}
+
+.contefoto{
+	width:200px;
+	height:200px;
+	padding:5px;
+	display: table-cell;
+    text-align: center;
+    vertical-align: middle
+}

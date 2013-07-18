@@ -58,6 +58,7 @@ $(function () {
 	//db.transaction(leerBD,errorDB);
 	db.transaction(crearRegistros,errorDB,cargaXMLNoticias);
 	leerBaseDatos();
+	var myPhotoSwipe = $("#Gallery a").photoSwipe({ enableMouseWheel: false , enableKeyboard: false }); //	
  });
 
 $(document).on("swiperight", function(event, ui) {
@@ -66,6 +67,7 @@ $(document).on("swiperight", function(event, ui) {
           
 $(function () {
 header_height  = $('[data-role="header"]').height();
-window_height  = ($(this).height())-header_height-30;
+footer_height  = $('[data-role="footer"]').height();
+window_height  = ($(this).height())-header_height-footer_height-30;
 });
 

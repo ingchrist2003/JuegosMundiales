@@ -58,10 +58,10 @@ function mostrarResultadosCrono(tx,resultados)
 			var abstract = $('#tempo').html(cadtexto).text();
 			lista += "<li>";
 			lista += "<div style='width:100%'>";
-			lista += "<img src='"+resultados.rows.item(i).urlicono+"' style='width:30%; max-width:30%;float:left;margin-right:5px;margin-bottom:5px;'>";	
+			lista += "<img src='"+resultados.rows.item(i).urlicono+"' style='width:80px;float:left;margin-right:5px;margin-bottom:5px;'>";	
 			lista += "";
 			lista += "<b>"+resultados.rows.item(i).titulo+"</b><br />";
-			lista += '<a href="#crono" data-role="button" data-icon="arrow-d" data-iconpos="notext" data-transition="none" data-inline="true" style="float:right; margin-top:5px;margin-right:5px;" onclick="cargarCronograma('+resultados.rows.item(i).nid+')">';
+			lista += '<a href="#crono" data-role="button" data-icon="arrow-d" data-iconpos="notext" data-transition="none" data-inline="true" style="float:left; margin-top:5px;margin-right:5px;" onclick="cargarCronograma('+resultados.rows.item(i).nid+')">';
 			lista += '<img src="img/vermas.png" width="80" />';
 			lista += '</a>';
 			lista += "</div>";
@@ -187,14 +187,17 @@ function resultadoCargaCronograma(tx,resultados)
 	
 	cadenaLocal += "";
 	cadenaLocal += '<h4>'+resultados.rows.item(0).titulo+'</h4>';
-	cadenaLocal += '<center>';
+	cadenaLocal += '<div id="Gallery2" class="gallery2" >';
+	cadenaLocal += '<center><a href="'+resultados.rows.item(0).urlimagen+'">';
 	cadenaLocal += "<img src='"+resultados.rows.item(0).urlimagen+"' style=' max-width:90%;'>";
-	cadenaLocal += '</center>';
+	cadenaLocal += '</center></a>';
+	cadenaLocal += "</div>";	
 	cadenaLocal += '';
 	
 	$("#contecrono").html(cadenaLocal);
 	$("#wrapper4").height(window_height);
 	myScroll4.refresh();
 	myScroll4.scrollTo(0, 0);
+	var myPhotoSwipe = $("#Gallery2 a").photoSwipe({ enableMouseWheel: false , enableKeyboard: false }); //
 }
 /*Detalle*/
