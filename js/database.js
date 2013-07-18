@@ -222,6 +222,6 @@ function resultadoCargaNoticia(tx,resultados)
 /*Noticias*/
 // Transaction error callback
 function errorDB(err) {
-	alert("Error Code:"+err.code+"  - Error Message"+err.message)
+	//alert("Error Code:"+err.code+"  - Error Message"+err.message)
 	console.log("Error processing SQL: "+err.code);
 }
