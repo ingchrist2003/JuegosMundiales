@@ -58,7 +58,7 @@ function mostrarResultadosCrono(tx,resultados)
 			var abstract = $('#tempo').html(cadtexto).text();
 			lista += "<li>";
 			lista += "<div style='width:100%'>";
-			lista += "<img src='"+resultados.rows.item(i).urlicono+"' style='width:80px;float:left;margin-right:5px;margin-bottom:5px;'>";	
+			lista += "<img src='"+resultados.rows.item(i).urlicono+"' style='width:30%; max-width:30%;float:left;margin-right:5px;margin-bottom:5px;'>";	
 			lista += "";
 			lista += "<b>"+resultados.rows.item(i).titulo+"</b><br />";
 			lista += '<a href="#crono" data-role="button" data-icon="arrow-d" data-iconpos="notext" data-transition="none" data-inline="true" style="float:left; margin-top:5px;margin-right:5px;" onclick="cargarCronograma('+resultados.rows.item(i).nid+')">';
